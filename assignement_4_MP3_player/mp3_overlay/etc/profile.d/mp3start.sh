@@ -35,15 +35,15 @@ while :
 do
 
 #Check for mounts
-if ! df | grep -q "/dev/sd"; then
-  partitions="$(ls /dev/sd* |  awk '/^\/dev\/sd/ {print $1}')" 2> /dev/null
-  for partition in $partitions; do
-    mountpoint="/media/$(basename $partition)"
-    mkdir -p $mountpoint
-    mount $partition $mountpoint
-    find "$mountpoint" -name '*.mp3' >> $songsFile
-  done
-fi
+partitions="$(ls /dev/sd*)" 2> /dev/null
+for partition in $partitions; do
+  #TODO: Check if partitiion is already mounted
+  mountpoint="/media/$(basename $partition)"
+  #TODO: Check here if directory already exists
+  mkdir -p $mountpoint
+  mount $partition $mountpoint
+  find "$mountpoint" -name '*.mp3' >> $songsFile
+done
 
 
 
