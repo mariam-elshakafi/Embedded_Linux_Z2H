@@ -16,7 +16,7 @@ echo '0' > /tmp/pause_flag
 echo '0' > /tmp/prevButtonPressed          
 echo '0' > /tmp/prevTimeCount  
 echo '1' > /tmp/songNum
-echo 'MP3 Not Started!' > /tmp/mp3_state
+echo 'Welcome to MP3!' > /tmp/mp3_state
 
 #Initializing buttons
 echo "2" > /sys/class/gpio/export 2> /dev/null
