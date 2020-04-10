@@ -2,7 +2,6 @@
 
 
 sed -i "s/export PS1='# '/export PS1='MP3_shell> '/" ${TARGET_DIR}/etc/profile
-
-output/host/bin/aarch64-linux-gcc ${TARGET_DIR}/MyApplication/printHello.c -o ${TARGET_DIR}/MyApplication/printHello.o
-rm ${TARGET_DIR}/MyApplication/printHello.c
+echo "echo Welcome to MP3 Player" >> ${TARGET_DIR}/etc/profile
+chmod 744 ${TARGET_DIR}/etc/init.d/S60MP3Service
 
