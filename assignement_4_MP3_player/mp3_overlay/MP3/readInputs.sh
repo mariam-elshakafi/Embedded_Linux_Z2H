@@ -18,5 +18,7 @@ echo '1' > /tmp/next_flag
 prev)
 echo '1' > /tmp/prev_flag
 ;;
+shuf)
+echo '1' > /tmp/shuf_flag
 esac
 

@@ -12,7 +12,8 @@ echo '0' > /tmp/stop_on_next_click
 echo '0' > /tmp/next_flag                        
 echo '0' > /tmp/prev_flag                        
 echo '0' > /tmp/restart_flag
-echo '0' > /tmp/pause_flag  
+echo '0' > /tmp/pause_flag
+echo '0' > /tmp/shuf_flag  
 echo '0' > /tmp/prevButtonPressed          
 echo '0' > /tmp/prevTimeCount  
 echo '1' > /tmp/songNum
@@ -27,6 +28,9 @@ echo "in" > /sys/class/gpio/gpio3/direction 2> /dev/null
 
 echo "4" > /sys/class/gpio/export 2> /dev/null
 echo "in" > /sys/class/gpio/gpio4/direction 2> /dev/null
+
+echo "17" > /sys/class/gpio/export 2> /dev/null
+echo "in" > /sys/class/gpio/gpio17/direction 2> /dev/null
 
 #Initializing song list
 songsFile=/Songs/songList

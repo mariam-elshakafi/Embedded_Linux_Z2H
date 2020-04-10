@@ -2,6 +2,9 @@
 
 currentState=`cat /tmp/mp3_state`
 clear
+echo "Welcome to MP3!"
+sleep 1
+clear
 echo $currentState
 
 while :

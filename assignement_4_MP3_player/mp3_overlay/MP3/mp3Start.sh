@@ -9,7 +9,7 @@ next_flag=`cat /tmp/next_flag`
 prev_flag=`cat /tmp/prev_flag`
 restart_flag=`cat /tmp/restart_flag`
 pause_flag=`cat /tmp/pause_flag`
-
+shuf_flag=`cat /tmp/shuf_flag`
 prevButtonPressed=`cat /tmp/prevButtonPressed`
 prevTimeCount=`cat /tmp/prevTimeCount`
 
@@ -32,6 +32,8 @@ prevTimeCount=`cat /tmp/prevTimeCount`
        prevTimeCount=0
        prev_flag=1
    fi
+ elif [ $(cat /sys/class/gpio/gpio17/value) -eq 0 ]; then
+   shuf_flag=1
  fi
 
 if [ $prevButtonPressed -eq 1 ]; then                
@@ -84,6 +86,14 @@ elif [ $prev_flag -eq 1 ]; then
   killall madplay 2> /dev/null
   mp3_state="NOW PLAYING:   `basename $songName`" 
   madplay -Q $songName &
+elif [ $shuf_flag -eq 1 ]; then
+  shuf_flag=0
+  songCount=`cat $songsFile | wc -l`
+  songNum=$((1+RANDOM%songCount))
+  songName=`cat $songsFile | sed -n "$songNum"p` 
+  killall madplay 2> /dev/null
+  mp3_state="NOW PLAYING:   `basename $songName`" 
+  madplay -Q $songName &
 fi
 
 echo $start_flag > /tmp/start_flag                        
@@ -92,6 +102,7 @@ echo $next_flag > /tmp/next_flag
 echo $prev_flag > /tmp/prev_flag        
 echo $restart_flag > /tmp/restart_flag
 echo $pause_flag > /tmp/pause_flag
+echo $shuf_flag > /tmp/shuf_flag
 echo $prevButtonPressed > /tmp/prevButtonPressed          
 echo $prevTimeCount > /tmp/prevTimeCount
 echo $songNum > /tmp/songNum
