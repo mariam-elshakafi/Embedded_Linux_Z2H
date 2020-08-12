@@ -6,4 +6,3 @@ A repo for Embedded Linux course assignments.
 
 - Phonebook bash script.
 - Safe delete script. 
-- MP3 player using Buildroot. 
